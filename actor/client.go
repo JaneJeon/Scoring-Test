@@ -6,9 +6,7 @@ import (
 	"sync"
 )
 
-const (
-	scoreLimit = 100
-)
+const scoreLimit = 100
 
 /**
  * Populates a DB from numerous goroutines, safely and concurrently.
@@ -24,7 +22,7 @@ func Populate(server *server, n int, f float32) {
 	// shoot off a goroutine for each addition operation
 	for i := 0; i < n; i++ {
 		go func(i int) {
-			if rand.Float32() < f {
+			if float32(i)/float32(n) < f {
 				server.set("Post "+strconv.Itoa(i), rand.Intn(scoreLimit-1)+1)
 			} else {
 				server.set("Post "+strconv.Itoa(i), 0)

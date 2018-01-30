@@ -9,7 +9,7 @@ import (
  * A "scores server", mimics Redis.
  * It supports a few simple commands for CRUD operations.
  * Designed to be safely concurrently accessed by numerous goroutines.
- * TODO: add deletion
+ * No sharding (yet)!
  */
 type server struct {
 	scores map[string]int
@@ -44,6 +44,11 @@ func (s *server) set(key string, val int) {
 	s.mu.Lock()
 	s.scores[key] = val
 	s.mu.Unlock()
+}
+
+// TODO
+func (s *server) del(key string) {
+	//
 }
 
 /*---------- Commands ----------*/
