@@ -20,6 +20,7 @@ func NewServer() server {
 	return server{scores: make(map[string]int)}
 }
 
+// TODO: sort
 func (s *server) String() string {
 	s.mu.RLock()
 	var base = "Scores Server:\n"
